@@ -12,8 +12,8 @@ import java.util.Locale;
 import java.util.Scanner;
 import java.util.UUID;
 
+import ca.core.domain.data.Greetings;
 import ca.core.domain.models.Greeting;
-import ca.core.domain.repositories.Greetings;
 
 public class GreetingsFileBased implements Greetings {
 

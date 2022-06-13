@@ -2,8 +2,8 @@ package ca.core.usecases.greetings.all;
 
 import java.util.List;
 
+import ca.core.domain.data.Greetings;
 import ca.core.domain.models.Greeting;
-import ca.core.domain.repositories.Greetings;
 import ca.core.usecases.Query;
 
 public class GreetingsAll implements Query {

@@ -1,7 +1,7 @@
 package ca.core.usecases.greetings.add;
 
+import ca.core.domain.data.Greetings;
 import ca.core.domain.models.Greeting;
-import ca.core.domain.repositories.Greetings;
 import ca.core.usecases.Command;
 
 public class GreetingsAdd implements Command {

@@ -1,7 +1,7 @@
 package ca.infrastructure.factories;
 
+import ca.core.domain.data.Greetings;
 import ca.core.domain.models.Greeting;
-import ca.core.domain.repositories.Greetings;
 import ca.core.factories.GreetingsUseCaseFactory;
 import ca.core.usecases.Command;
 import ca.core.usecases.Query;
