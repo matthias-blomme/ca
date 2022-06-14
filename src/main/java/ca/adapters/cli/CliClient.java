@@ -9,12 +9,15 @@ public class CliClient {
 
     private static final int CHOICE_ADD = 1;
 
-    private Renderer renderer = new Renderer();
+    private static final int CHOICE_ALL = 2;
+
+    private Presenter renderer;
     private GreetingsUseCaseFactory useCaseFactory;
     private boolean isRunning = true;
 
-    public CliClient(GreetingsUseCaseFactory useCaseFactory) {
+    public CliClient(GreetingsUseCaseFactory useCaseFactory, Presenter renderer) {
         this.useCaseFactory = useCaseFactory;
+        this.renderer = renderer;
     }
 
     public void init() throws IOException {
@@ -33,6 +36,8 @@ public class CliClient {
             case CHOICE_ADD:
                 handleGreetingsAdd();
                 break;
+            case CHOICE_ALL:
+                handleGreetingsAll();
             default:
                 isRunning = false;
         }
@@ -41,6 +46,10 @@ public class CliClient {
     private void handleGreetingsAdd() throws IOException {
         Greeting greeting = new Greeting(renderer.askForGreeting());
         useCaseFactory.createGreetingsAdd(greeting).execute();
+    }
+
+    private void handleGreetingsAll() {
+        useCaseFactory.createGreetingsAll().execute();
     }
 
 }

@@ -1,22 +1,21 @@
 package ca.core.usecases.greetings.all;
 
 import java.util.List;
+import java.util.function.Consumer;
 
 import ca.core.domain.data.Greetings;
 import ca.core.domain.models.Greeting;
-import ca.core.usecases.Query;
+import ca.core.usecases.GreetingsUseCase;
 
-public class GreetingsAll implements Query {
+public class GreetingsAll extends GreetingsUseCase<List<Greeting>> {
 
-    public Greetings greetings;
-
-    public GreetingsAll(Greetings greetings) {
-        this.greetings = greetings;
+    public GreetingsAll(Greetings greetings, Consumer<List<Greeting>> responseConsumer) {
+        super(greetings, responseConsumer);
     }
 
     @Override
-    public List<Greeting> execute() {
-        return greetings.all();
+    protected List<Greeting> executeUseCase() {
+        return getGreetings().all();
     }
     
 }
