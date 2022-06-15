@@ -3,12 +3,12 @@ package ca.infrastructure.factories;
 import ca.adapters.cli.Presenter;
 import ca.core.domain.data.Greetings;
 import ca.core.domain.models.Greeting;
-import ca.core.factories.GreetingsUseCaseFactory;
-import ca.core.usecases.Command;
-import ca.core.usecases.greetings.add.GreetingsAdd;
-import ca.core.usecases.greetings.all.GreetingsAll;
+import ca.core.usecases.base.UseCaseFactory;
+import ca.core.usecases.base.UseCaseIn;
+import ca.core.usecases.commands.GreetingsAdd;
+import ca.core.usecases.queries.GreetingsAll;
 
-public class GreetingsUseCaseCliFactoryImpl implements GreetingsUseCaseFactory {
+public class GreetingsUseCaseCliFactoryImpl implements UseCaseFactory {
 
     private Greetings greetings;
     private Presenter presenter;
@@ -19,13 +19,12 @@ public class GreetingsUseCaseCliFactoryImpl implements GreetingsUseCaseFactory {
     }
 
     @Override
-    public Command createGreetingsAdd(Greeting greeting) {
-        return new GreetingsAdd(greetings, greeting);
+    public UseCaseIn<Void> createGreetingsAll() {
+        return new GreetingsAll(greetings, presenter::showAllGreetings);
     }
 
     @Override
-    public Command createGreetingsAll() {
-        return new GreetingsAll(greetings, presenter::showAllGreetings);
+    public UseCaseIn<Greeting> createGreetingsAdd() {
+        return new GreetingsAdd(greetings);
     }
-    
 }

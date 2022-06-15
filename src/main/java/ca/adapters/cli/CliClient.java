@@ -1,9 +1,8 @@
 package ca.adapters.cli;
 
 import java.io.IOException;
-
 import ca.core.domain.models.Greeting;
-import ca.core.factories.GreetingsUseCaseFactory;
+import ca.core.usecases.base.UseCaseMediator;
 
 public class CliClient {
 
@@ -12,11 +11,11 @@ public class CliClient {
     private static final int CHOICE_ALL = 2;
 
     private Presenter renderer;
-    private GreetingsUseCaseFactory useCaseFactory;
+    private UseCaseMediator useCaseMediator;
     private boolean isRunning = true;
 
-    public CliClient(GreetingsUseCaseFactory useCaseFactory, Presenter renderer) {
-        this.useCaseFactory = useCaseFactory;
+    public CliClient(UseCaseMediator useCaseMediator, Presenter renderer) {
+        this.useCaseMediator = useCaseMediator;
         this.renderer = renderer;
     }
 
@@ -45,11 +44,11 @@ public class CliClient {
 
     private void handleGreetingsAdd() throws IOException {
         Greeting greeting = new Greeting(renderer.askForGreeting());
-        useCaseFactory.createGreetingsAdd(greeting).execute();
+        useCaseMediator.addGreeting(greeting);
     }
 
     private void handleGreetingsAll() {
-        useCaseFactory.createGreetingsAll().execute();
+        useCaseMediator.getAllGreetings();
     }
 
 }
