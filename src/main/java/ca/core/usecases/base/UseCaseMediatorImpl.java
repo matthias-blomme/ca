@@ -1,7 +1,9 @@
 package ca.core.usecases.base;
 
 import ca.core.domain.models.Greeting;
+import ca.core.usecases.factories.UseCaseFactory;
 
+@Deprecated
 public class UseCaseMediatorImpl implements UseCaseMediator {
 
     private UseCaseFactory factory;

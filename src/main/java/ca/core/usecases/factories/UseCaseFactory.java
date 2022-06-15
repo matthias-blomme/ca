@@ -1,6 +1,7 @@
-package ca.core.usecases.base;
+package ca.core.usecases.factories;
 
 import ca.core.domain.models.Greeting;
+import ca.core.usecases.base.UseCaseIn;
 
 public interface UseCaseFactory {
 

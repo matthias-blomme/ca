@@ -2,21 +2,19 @@ package ca.adapters.cli;
 
 import java.io.IOException;
 import ca.core.domain.models.Greeting;
-import ca.core.usecases.base.UseCaseMediator;
+import ca.core.usecases.factories.UseCaseFactory;
 
 public class CliClient {
 
     private static final int CHOICE_ADD = 1;
-
     private static final int CHOICE_ALL = 2;
-
-    private Presenter renderer;
-    private UseCaseMediator useCaseMediator;
+    private Presenter presenter;
+    private UseCaseFactory useCaseFactory;
     private boolean isRunning = true;
 
-    public CliClient(UseCaseMediator useCaseMediator, Presenter renderer) {
-        this.useCaseMediator = useCaseMediator;
-        this.renderer = renderer;
+    public CliClient(UseCaseFactory useCaseFactory, Presenter presenter) {
+        this.useCaseFactory = useCaseFactory;
+        this.presenter = presenter;
     }
 
     public void init() throws IOException {
@@ -25,8 +23,8 @@ public class CliClient {
 
     private void cliLoop() throws IOException {
         while(isRunning) {
-            renderer.showMainScreen();
-            handleChoice(renderer.askForChoice());
+            presenter.showMainScreen();
+            handleChoice(presenter.askForChoice());
         }
     }
 
@@ -43,12 +41,12 @@ public class CliClient {
     }
 
     private void handleGreetingsAdd() throws IOException {
-        Greeting greeting = new Greeting(renderer.askForGreeting());
-        useCaseMediator.addGreeting(greeting);
+        Greeting greeting = new Greeting(presenter.askForGreeting());
+        useCaseFactory.createGreetingsAdd().process(greeting);
     }
 
     private void handleGreetingsAll() {
-        useCaseMediator.getAllGreetings();
+        useCaseFactory.createGreetingsAll().process();
     }
 
 }
